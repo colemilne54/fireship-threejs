@@ -1,4 +1,8 @@
 import './style.css';
+import spaceUrl from './assets/space.jpg';
+import coleUrl from './assets/cole.jpg';
+import normalUrl from './assets/normal.jpg';
+import moonUrl from './assets/moon.jpg';
 
 import * as THREE from 'three';
 // need scene, camera, and renderer
@@ -38,7 +42,7 @@ scene.add(pointLight, ambientLight);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-const coleTexture = new THREE.TextureLoader().load('./assets/cole.jpg');
+const coleTexture = new THREE.TextureLoader().load(coleUrl);
 
 const cole = new THREE.Mesh(
   new THREE.BoxGeometry(3,3,3),
@@ -47,8 +51,8 @@ const cole = new THREE.Mesh(
 
 scene.add(cole);
 
-const moonTexture = new THREE.TextureLoader().load('./assets/moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('./assets/normal.jpg');
+const moonTexture = new THREE.TextureLoader().load(moonUrl);
+const normalTexture = new THREE.TextureLoader().load(normalUrl);
 
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
@@ -94,7 +98,7 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load('./assets/space.jpg');
+const spaceTexture = new THREE.TextureLoader().load(spaceUrl);
 scene.background = spaceTexture;
 
 function animate() {
