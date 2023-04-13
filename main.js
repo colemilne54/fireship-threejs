@@ -38,6 +38,49 @@ scene.add(lightHelper, gridHelper);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
+const coleTexture = new THREE.TextureLoader().load('./assets/cole.jpg');
+
+const cole = new THREE.Mesh(
+  new THREE.BoxGeometry(3,3,3),
+  new THREE.MeshBasicMaterial( { map: coleTexture } )
+);
+
+scene.add(cole);
+
+const moonTexture = new THREE.TextureLoader().load('./assets/moon.jpg');
+const normalTexture = new THREE.TextureLoader().load('./assets/normal.jpg');
+
+const moon = new THREE.Mesh(
+  new THREE.SphereGeometry(3, 32, 32),
+  new THREE.MeshStandardMaterial( {
+    map: moonTexture,
+    normalMap: normalTexture
+  } )
+);
+
+// preference on how to set position
+moon.position.z = 30;
+moon.position.setX(-10);
+
+scene.add(moon);
+
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+
+  moon.rotation.x += 0.05;
+  moon.rotation.y += 0.075;
+  moon.rotation.z += 0.05;
+
+  cole.rotation.y += 0.01;
+  cole.rotation.z += 0.01;
+
+  camera.position.z = t * -0.01;
+  camera.position.x = t * -0.0002;
+  camera.position.y = t * -0.0002;
+}
+document.body.onscroll = moveCamera;
+
+
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
   const material = new THREE.MeshStandardMaterial( { color: 0xffffff });
@@ -51,7 +94,7 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
-const spaceTexture = new THREE.TextureLoader().load('./assets/milky-way.jpg');
+const spaceTexture = new THREE.TextureLoader().load('./assets/space.jpg');
 scene.background = spaceTexture;
 
 function animate() {
