@@ -1,9 +1,9 @@
 import './style.css';
-import spaceUrl from './public/space.jpg';
-import coleUrl from './public/cole.jpg';
-import normalUrl from './public/normal.jpg';
-import moonUrl from './public/moon.jpg';
-// import gloveUrl from './public/glove/scene.gltf';
+import spaceUrl from '/space.jpg';
+import coleUrl from '/cole.jpg';
+import normalUrl from '/normal.jpg';
+import moonUrl from '/moon.jpg';
+// import gloveUrl from '/glove/scene.gltf';
 
 import * as THREE from 'three';
 // need scene, camera, and renderer
@@ -74,7 +74,7 @@ scene.add(moon);
 
 let gloveModel;
 
-gltfLoader.load('./public/glove/scene.gltf', (glove) => {
+gltfLoader.load('glove/scene.gltf', (glove) => {
   gloveModel = glove;
   glove.scene.position.x = 5;
   glove.scene.position.y = 0;
