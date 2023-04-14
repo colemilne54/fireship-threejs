@@ -3,11 +3,13 @@ import spaceUrl from './assets/space.jpg';
 import coleUrl from './assets/cole.jpg';
 import normalUrl from './assets/normal.jpg';
 import moonUrl from './assets/moon.jpg';
+// import gloveUrl from './assets/glove/scene.gltf';
 
 import * as THREE from 'three';
 // need scene, camera, and renderer
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 const scene = new THREE.Scene();
 
@@ -22,6 +24,8 @@ renderer.setSize (window.innerWidth, window.innerHeight );
 camera.position.setZ(30);
 
 renderer.render( scene, camera );
+
+const gltfLoader = new GLTFLoader();
 
 // 3 steps to object: geometry (set of vectors), material (geometry wrapping paper, can use webgl for custom shaders), mesh (geometry + material)
 const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 );
@@ -68,6 +72,20 @@ moon.position.setX(-10);
 
 scene.add(moon);
 
+let gloveModel;
+
+gltfLoader.load('./assets/glove/scene.gltf', (glove) => {
+  gloveModel = glove;
+  glove.scene.position.x = 5;
+  glove.scene.position.y = 0;
+  glove.scene.position.z = 55;
+  glove.scene.rotation.x = 5;
+  glove.scene.rotation.y = 10;
+  glove.scene.rotation.z = 5;
+  glove.scene.scale.set(10, 10, 10);
+  scene.add(glove.scene);
+});
+
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
 
@@ -81,6 +99,15 @@ function moveCamera() {
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
   camera.position.y = t * -0.0002;
+
+  // if (gloveModel) {
+  //   gloveModel.scene.rotation.x += 0.05;
+  //   gloveModel.scene.rotation.y += 0.075;
+  //   gloveModel.scene.rotation.z += 0.05;
+  //   console.log("x " + gloveModel.scene.rotation.x) // 10
+  //   console.log("y " + gloveModel.scene.rotation.y) // 15
+  //   console.log("z " + gloveModel.scene.rotation.z) // 10
+  // }
 }
 document.body.onscroll = moveCamera;
 
