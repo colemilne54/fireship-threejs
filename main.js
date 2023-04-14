@@ -1,9 +1,9 @@
 import './style.css';
-import spaceUrl from './assets/space.jpg';
-import coleUrl from './assets/cole.jpg';
-import normalUrl from './assets/normal.jpg';
-import moonUrl from './assets/moon.jpg';
-// import gloveUrl from './assets/glove/scene.gltf';
+import spaceUrl from './public/space.jpg';
+import coleUrl from './public/cole.jpg';
+import normalUrl from './public/normal.jpg';
+import moonUrl from './public/moon.jpg';
+// import gloveUrl from './public/glove/scene.gltf';
 
 import * as THREE from 'three';
 // need scene, camera, and renderer
@@ -74,7 +74,7 @@ scene.add(moon);
 
 let gloveModel;
 
-gltfLoader.load('./assets/glove/scene.gltf', (glove) => {
+gltfLoader.load('./public/glove/scene.gltf', (glove) => {
   gloveModel = glove;
   glove.scene.position.x = 5;
   glove.scene.position.y = 0;
@@ -100,14 +100,14 @@ function moveCamera() {
   camera.position.x = t * -0.0002;
   camera.position.y = t * -0.0002;
 
-  // if (gloveModel) {
-  //   gloveModel.scene.rotation.x += 0.05;
-  //   gloveModel.scene.rotation.y += 0.075;
-  //   gloveModel.scene.rotation.z += 0.05;
-  //   console.log("x " + gloveModel.scene.rotation.x) // 10
-  //   console.log("y " + gloveModel.scene.rotation.y) // 15
-  //   console.log("z " + gloveModel.scene.rotation.z) // 10
-  // }
+  if (gloveModel) {
+    gloveModel.scene.rotation.x += 0.05;
+    gloveModel.scene.rotation.y += 0.075;
+    gloveModel.scene.rotation.z += 0.05;
+    console.log("x " + gloveModel.scene.rotation.x) // 10
+    console.log("y " + gloveModel.scene.rotation.y) // 15
+    console.log("z " + gloveModel.scene.rotation.z) // 10
+  }
 }
 document.body.onscroll = moveCamera;
 
