@@ -86,6 +86,15 @@ gltfLoader.load('glove/scene.gltf', (glove) => {
   scene.add(glove.scene);
 });
 
+gltfLoader.load('drum_set/scene.gltf', (drums) => {
+  drums.scene.position.x = -3;
+  drums.scene.position.y = 0;
+  drums.scene.position.z = 55;
+  drums.scene.scale.set(1, 1, 1);
+  drums.scene.
+  scene.add(drums.scene);
+});
+
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
 
@@ -104,9 +113,9 @@ function moveCamera() {
     gloveModel.scene.rotation.x += 0.05;
     gloveModel.scene.rotation.y += 0.075;
     gloveModel.scene.rotation.z += 0.05;
-    console.log("x " + gloveModel.scene.rotation.x) // 10
-    console.log("y " + gloveModel.scene.rotation.y) // 15
-    console.log("z " + gloveModel.scene.rotation.z) // 10
+    // console.log("x " + gloveModel.scene.rotation.x) // 10
+    // console.log("y " + gloveModel.scene.rotation.y) // 15
+    // console.log("z " + gloveModel.scene.rotation.z) // 10
   }
 }
 document.body.onscroll = moveCamera;
